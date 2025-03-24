@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!-- a suite tag can contain multiple test tags if required but testng.xml 
+	file can contain only one suite/suite tag -->
+<suite name="opencartUIAutomatedTests">
+	<listeners>
+		<!-- test cases falling under below test tag (limited to suite tag) are 
+			in scope of this listener, applicable only upon executing testng.xml file 
+			but has no effect if test case is ran individually -->
+		<listener class-name="listeners.AnnotationTransformer" />
+	</listeners>
+	<test name="opencartTests">
+		<classes>
+			<class name="tests.LoginTest">
+				<!-- <methods> <include name="verifyLoginPageNavigation" /> </methods> -->
+			</class>
+			<class name="tests.MyAccountTest" />
+		</classes>
+	</test>
+</suite>
