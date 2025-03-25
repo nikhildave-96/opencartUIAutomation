@@ -28,10 +28,14 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: 134
+        install-chromedriver: true
     - run: chrome --version
+    - run: /usr/bin/google-chrome --version
     - name: Build with Maven
       # run: mvn -B package --file pom.xml
-      run: mvn clean test
+      run: mvn test
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
