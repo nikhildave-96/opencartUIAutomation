@@ -39,7 +39,7 @@ public class BaseTest {
 	 */
 	public static void captureScreenshotOnFail(ITestResult result) throws IOException {
 //		 \\screenshots\\ will create a folder if it doesn't exists already
-		String ssDest = System.getProperty("user.dir") + "\\screenshots\\" + result.getName() + ".png";
+		String ssDest = System.getProperty("user.dir") + "/screenshots/" + result.getName() + ".png";
 //		 failure has a status of 2
 		if (result.getStatus() == ITestResult.FAILURE) {
 			screenshot = (TakesScreenshot) DriverManager.getDriver();

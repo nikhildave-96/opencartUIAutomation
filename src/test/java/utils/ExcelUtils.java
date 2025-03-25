@@ -14,7 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelUtils {
 	private static Logger logger = LogManager.getLogger(ExcelUtils.class);
 	static FileInputStream excelFile;
-	static String excelFilePath = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\TestDataExcel.xlsx";
+	static String excelFilePath = System.getProperty("user.dir") + "/src/test/java/resources/TestDataExcel.xlsx";
 	static XSSFWorkbook workbook;
 	static XSSFSheet worksheet;
 	static XSSFRow row;

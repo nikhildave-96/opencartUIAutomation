@@ -31,7 +31,7 @@ public class ExtentReporter {
 	 * @author nikdav
 	 */
 	public static void generateReport() {
-		String reportPath = System.getProperty("user.dir") + "\\test-output\\extent\\" + "extentReport.html";
+		String reportPath = System.getProperty("user.dir") + "/test-output/extent/" + "extentReport.html";
 		reporter = new ExtentSparkReporter(reportPath);
 		logger.info("Extent report path: '" + reportPath + "' ...");
 
@@ -50,7 +50,7 @@ public class ExtentReporter {
 	 * @param result Object of TestNG's ITestResult interface
 	 */
 	public static void addTestStatus(ITestResult result) {
-		String failedTestssPath = System.getProperty("user.dir") + "\\screenshots\\" + result.getName() + ".png";
+		String failedTestssPath = System.getProperty("user.dir") + "/screenshots/" + result.getName() + ".png";
 		if (result.getStatus() == ITestResult.FAILURE) {
 			extentTest.log(Status.FAIL,
 					MarkupHelper.createLabel(result.getThrowable() + " - testcase FAILED", ExtentColor.RED));

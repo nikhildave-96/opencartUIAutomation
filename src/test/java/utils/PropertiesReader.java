@@ -112,7 +112,7 @@ public class PropertiesReader {
 //		 needed as to overcome syntax error for using single \
 		try {
 			FileInputStream data = new FileInputStream(
-					System.getProperty("user.dir") + "\\src\\test\\java\\resources\\data.properties");
+					System.getProperty("user.dir") + "/src/test/java/resources/data.properties");
 			dataProp = new Properties();
 			dataProp.load(data);
 			logger.info("loaded data from data.properties file ...");
@@ -137,7 +137,7 @@ public class PropertiesReader {
 	public static void initLocatorMap() {
 		try {
 			FileInputStream data = new FileInputStream(
-					System.getProperty("user.dir") + "\\src\\test\\java\\resources\\locator.properties");
+					System.getProperty("user.dir") + "/src/test/java/resources/locator.properties");
 			locProp = new Properties();
 			locProp.load(data);
 			logger.info("loaded data from locator.properties file ...");
@@ -162,7 +162,7 @@ public class PropertiesReader {
 	public static void initElementMap() {
 		try {
 			FileInputStream data = new FileInputStream(
-					System.getProperty("user.dir") + "\\src\\test\\java\\resources\\opencart.properties");
+					System.getProperty("user.dir") + "/src/test/java/resources/opencart.properties");
 			elementProp = new Properties();
 			elementProp.load(data);
 			logger.info("loaded data from opencart.properties file ...");
@@ -176,5 +176,10 @@ public class PropertiesReader {
 		for (String propKey : elementProp.stringPropertyNames()) {
 			appElementMap.put(propKey, elementProp.getProperty(propKey));
 		}
+	}
+
+	public static void main(String[] args) {
+		System.out.println(readKey("url"));
+		System.out.println(System.getProperty("os.name"));
 	}
 }
