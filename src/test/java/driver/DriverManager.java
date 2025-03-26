@@ -50,7 +50,7 @@ public class DriverManager {
 //				 DesiredCapabilities's object can be passed as an argument while creating
 //				 driver's object
 				ChromeOptions chOptions = new ChromeOptions();
-				chOptions.addArguments("incognito", "start-maximized");
+				chOptions.addArguments("headless");
 				driver = new ChromeDriver(chOptions);
 //				 selenium 4 onwards doesn't require configuring system property like below
 //				 System.setProperty("webdriver.chrome.driver", "<pathToDriverExefile>");
