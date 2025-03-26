@@ -41,6 +41,14 @@ jobs:
         chmod +x chromedriver-linux64/chromedriver
         sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
     - run: /usr/bin/google-chrome --version
+    - name: "Setup env vars"
+      run: echo "Setting env vars"
+      env:
+        oc_username: "test.user@opencart.com"
+        oc_password: "Opencart123"
+        run: |
+          echo "var1 is ${{ steps.outputs.oc_username }}"
+          echo "var2 is ${{ steps.outputs.oc_password }}"
     - name: Build with Maven
       # run: mvn -B package --file pom.xml
       run: mvn test
