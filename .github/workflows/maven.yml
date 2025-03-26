@@ -20,10 +20,8 @@ env:
   run: |
       echo "var1 is $oc_username"
       echo "var2 is $oc_password"
-      echo ${{env.oc_username}}
-      echo ${{env.oc_password}}
-      echo This is var 1: ${{env.oc_username}}
-      echo This is var 2: ${{env.oc_password}}
+      echo This is var 1: $oc_username
+      echo This is var 2: $oc_password
 
 jobs:
   build:
