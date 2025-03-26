@@ -9,8 +9,6 @@ on:
     branches: [ "main" ]
 
 env:
-  # oc_username: "test.user@opencart.com"
-  # oc_password: "Opencart123"
   oc_username: ${{ secrets.OC_USERNAME }}
   oc_password: ${{ secrets.OC_PASSWORD }}
 
@@ -19,14 +17,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print env vars
-      run: |
-        echo "var1 is $oc_username"
-        echo "var2 is $oc_password"
-        echo This is var 1: $oc_username
-        echo This is var 2: $oc_password
-        echo Now is var 1: ${{env.oc_username}}
-        echo Now is var 2: ${{env.oc_password}}
     - uses: actions/checkout@v4
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -50,5 +40,5 @@ jobs:
     - run: /usr/bin/google-chrome --version
     - name: Build with Maven
       # run: mvn -B package --file pom.xml
-      run: mvn test -Dtest=LoginTest#verifyLogin
-      # run: mvn test
+      # run: mvn test -Dtest=LoginTest#verifyLogin
+      run: mvn test
