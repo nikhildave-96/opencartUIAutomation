@@ -1,24 +1,20 @@
-/target/
-
+# ignore everything under test-output
 /test-output/
 
-/screenshots/
+# do not ignore extent under test-output
+!/test-output/extent/
 
+/target/
+/screenshots/
 /applogs/
 
 # Package Files 
 *.jar
-
 *.war
-
 *.nar
-
 *.ear
-
 *.zip
-
 *.tar.gz
-
 *.rar
 
 # Compiled class file
@@ -28,9 +24,6 @@
 *.log
 
 .project
-
 .settings
-
 .mvn
-
 .classpath
