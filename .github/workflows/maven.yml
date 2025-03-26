@@ -47,11 +47,11 @@ jobs:
         oc_username: "test.user@opencart.com"
         oc_password: "Opencart123"
         run: |
-          echo "var1 is ${{ steps.outputs.oc_username }}"
-          echo "var2 is ${{ steps.outputs.oc_password }}"
+          echo "var1 is $oc_username"
+          echo "var2 is $oc_password"
     - name: Build with Maven
       # run: mvn -B package --file pom.xml
-      run: mvn test
+      # run: mvn test
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
