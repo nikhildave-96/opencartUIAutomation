@@ -1,5 +1,5 @@
 # ignore everything under test-output
-/test-output/
+/test-output/*
 
 # do not ignore extent under test-output
 !/test-output/extent/

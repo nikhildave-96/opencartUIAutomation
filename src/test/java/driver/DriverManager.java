@@ -41,7 +41,7 @@ public class DriverManager {
 	 * @author nikdav
 	 */
 	public static void initBrowser() {
-		logger.info("running on system '" + System.getenv("os") + "' ...");
+		logger.info("running on system '" + System.getenv("OS") + "' ...");
 		String browserName = PropertiesReader.readKey("browser").toLowerCase();
 		logger.info("launching '" + browserName + "' browser ...");
 		if (driver == null) {
@@ -51,7 +51,7 @@ public class DriverManager {
 //				 DesiredCapabilities's object can be passed as an argument while creating
 //				 driver's object
 				ChromeOptions chOptions = new ChromeOptions();
-				chOptions.addArguments("headless");
+				chOptions.addArguments("incognito"); // only headless works for github actions
 				driver = new ChromeDriver(chOptions);
 //				 selenium 4 onwards doesn't require configuring system property like below
 //				 System.setProperty("webdriver.chrome.driver", "<pathToDriverExefile>");
