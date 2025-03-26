@@ -17,18 +17,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      oc_username: "test.user@opencart.com"
-      oc_password: "Opencart123"
-      run: |
-          echo "var1 is $oc_username"
-          echo "var2 is $oc_password"
-          echo ${{env.oc_username}}
-          echo ${{env.oc_password}}
-          echo This is var 1: ${{env.oc_username}}
-          echo This is var 2: ${{env.oc_password}}
     
     steps:
+    - name: setting env vars
+      env:
+        oc_username: "test.user@opencart.com"
+        oc_password: "Opencart123"
+        run: |
+            echo "var1 is $oc_username"
+            echo "var2 is $oc_password"
+            echo ${{env.oc_username}}
+            echo ${{env.oc_password}}
+            echo This is var 1: ${{env.oc_username}}
+            echo This is var 2: ${{env.oc_password}}
     - uses: actions/checkout@v4
     - name: Set up JDK 17
       uses: actions/setup-java@v4
