@@ -16,6 +16,7 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     env:
       oc_username: "test.user@opencart.com"
       oc_password: "Opencart123"
@@ -26,9 +27,7 @@ jobs:
           echo ${{env.oc_password}}
           echo This is var 1: ${{env.oc_username}}
           echo This is var 2: ${{env.oc_password}}
-          
-    runs-on: ubuntu-latest
-  
+    
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
