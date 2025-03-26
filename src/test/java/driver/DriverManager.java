@@ -41,6 +41,7 @@ public class DriverManager {
 	 * @author nikdav
 	 */
 	public static void initBrowser() {
+		System.out.println("system: " + System.getenv("os.name"));
 		String browserName = PropertiesReader.readKey("browser").toLowerCase();
 		logger.info("launching '" + browserName + "' browser ...");
 		if (driver == null) {
