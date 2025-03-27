@@ -30,7 +30,7 @@ jobs:
         chrome-version: 134
         install-chromedriver: true
     - name: printing versions
-    - run: |
+      run: |
         echo CHROME-VERSION IS: chrome-version
         echo CHROMEDRIVER-VERSION IS: chromedriver-version
     - name: Build with Maven
