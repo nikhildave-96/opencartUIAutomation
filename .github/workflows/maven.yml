@@ -29,7 +29,10 @@ jobs:
       with:
         chrome-version: 134
         install-chromedriver: true
-   # - run: /usr/bin/google-chrome --version
+    - name: printing versions
+    - run: |
+        echo CHROME-VERSION IS: chrome-version
+        echo CHROMEDRIVER-VERSION IS: chromedriver-version
     - name: Build with Maven
       # run: mvn -B package --file pom.xml
       run: mvn test -Dtest=LoginTest#verifyLogin
