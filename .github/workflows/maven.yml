@@ -25,10 +25,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Install Chrome
-    - uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: 120
-          install-chromedriver: true
+      uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: 120
+        install-chromedriver: true
    # - run: /usr/bin/google-chrome --version
     - name: Build with Maven
       # run: mvn -B package --file pom.xml
