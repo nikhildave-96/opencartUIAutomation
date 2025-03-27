@@ -29,11 +29,6 @@ jobs:
       with:
         chrome-version: 134
         install-chromedriver: true
-    - name: printing versions
-      id: chrome-setup
-      run: |
-        ${{ steps.chrome-setup.outputs.chrome-version }}
-        ${{ steps.chrome-setup.outputs.chromedriver-version }}
     - name: Build with Maven
       # run: mvn -B package --file pom.xml
       run: mvn test -Dtest=LoginTest#verifyLogin
