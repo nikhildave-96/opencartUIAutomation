@@ -27,7 +27,7 @@ jobs:
     - name: Install Chrome
       uses: browser-actions/setup-chrome@v1
       with:
-        chrome-version: 120
+        chrome-version: 134
         install-chromedriver: true
    # - run: /usr/bin/google-chrome --version
     - name: Build with Maven
