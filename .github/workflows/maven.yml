@@ -26,14 +26,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Checking browser
-      if: ${{env.oc_browser == 'chrome'}}
-      run: echo "This is chrome"
     - name: Install Chrome
+      if: ${{env.oc_browser == 'chrome'}}
       uses: browser-actions/setup-chrome@v1
       with:
-        chrome-version: 134
+        # chrome-version: 134
         install-chromedriver: true
+    # - name: Install edge
+    #   if: ${{env.oc_browser == 'edge'}}
+    #   uses: browser-actions/setup-edge@v1
+    #   with:
+    #     chrome-version: 134
+    #     install-chromedriver: true
     - name: Print some info
       run: |
         echo "printing ..."
