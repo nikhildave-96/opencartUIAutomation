@@ -11,6 +11,8 @@ on:
 env:
   oc_username: ${{ secrets.OC_USERNAME }}
   oc_password: ${{ secrets.OC_PASSWORD }}
+  browser: ${{ vars.browser }}
+  url: ${{ vars.url }}
 
 jobs:
   build:
