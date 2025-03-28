@@ -35,9 +35,9 @@ jobs:
     - name: Install Edge
       if: ${{env.oc_browser == 'edge'}}
       uses: browser-actions/setup-edge@v1
-      with:
-        edge-version: 134
-        install-edgedriver: true
+      # with:
+      #   edge-version: 134
+        # install-edgedriver: true
     - name: Print some info
       run: |
         echo "printing ..."
