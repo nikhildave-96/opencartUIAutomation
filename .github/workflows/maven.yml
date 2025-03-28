@@ -45,6 +45,8 @@ jobs:
     - name: Step 3 - Install Firefox browser
       if: ${{env.oc_browser == 'firefox'}}
       uses: browser-actions/setup-firefox@v1
+      with:
+        firefox-version: 134
     - name: Step 4 - Build with Maven
       # run: mvn -B package --file pom.xml
       run: mvn test -Dtest=LoginTest#verifyLogin
