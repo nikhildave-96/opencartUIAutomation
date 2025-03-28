@@ -1,5 +1,4 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
 name: Java CI with Maven
 
 on:
@@ -17,22 +16,25 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Step 1 - Checkout the project
       uses: actions/checkout@v4
+      
     - name: Step 2 - Set up JDK
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
     - name: Print some info
       run: |
         echo "printing ..."
         echo $ImageOS
         echo ${{ vars.OC_BROWSER }}
         echo ${{ vars.OC_URL }}
+        
     - name: Step 3 - Install Chrome browser
       if: ${{env.oc_browser == 'chrome'}}
       uses: browser-actions/setup-chrome@v1
@@ -42,15 +44,13 @@ jobs:
     - name: Step 3 - Install Edge browser
       if: ${{env.oc_browser == 'edge'}}
       uses: browser-actions/setup-edge@v1
-    - name: Step 3 - Install Firefox browser
-      if: ${{env.oc_browser == 'firefox'}}
-      uses: browser-actions/setup-firefox@v1
-      # with:
-      #   firefox-version: 135.0
+       # firefox browser throwing org.openqa.selenium.SessionNotCreatedException even in headless mode
+       
     - name: Step 4 - Build with Maven
       # run: mvn -B package --file pom.xml
       run: mvn test -Dtest=LoginTest#verifyLogin
       # run: mvn clean test
+      
     # - name: Step 5 - Archive report and log files
     #   uses: actions/upload-artifact@v4
     #   with:
