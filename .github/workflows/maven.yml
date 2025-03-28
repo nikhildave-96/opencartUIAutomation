@@ -33,7 +33,8 @@ jobs:
         install-chromedriver: true
     - name: Print some info
       run: |
-        echo runner.os
+        echo $RunnerOS
+        echo $ImageOS
         echo ${{ vars.browser }}
         echo ${{ vars.url }}
     - name: Build with Maven
