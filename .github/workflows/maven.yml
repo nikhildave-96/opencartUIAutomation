@@ -28,7 +28,7 @@ jobs:
         cache: maven
     - name: Checking browser
       if: ${{oc_url == 'chrome'}}
-        echo "This is chrome"
+      run: echo "This is chrome"
     - name: Install Chrome
       uses: browser-actions/setup-chrome@v1
       with:
