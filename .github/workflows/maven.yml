@@ -35,8 +35,8 @@ jobs:
       run: |
         echo "printing ..."
         echo $ImageOS
-        echo ${{ vars.browser }}
-        echo ${{ vars.url }}
+        echo ${{ vars.OC_BROWSER }}
+        echo ${{ vars.OC_URL }}
     - name: Build with Maven
       # run: mvn -B package --file pom.xml
       run: mvn test -Dtest=LoginTest#verifyLogin
