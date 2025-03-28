@@ -25,7 +25,7 @@ public class DriverManager {
 //	 log4j related configuration file (.xml/.yaml) should be present under
 //	 'src/main/resources' or 'src/test/resources' directory/folder
 	private static final Logger logger = LogManager.getLogger(DriverManager.class);
-	static String browserName = PropertiesReader.readKey("oc_browser").toLowerCase();
+	static String browserName = PropertiesReader.browser;
 
 	/**
 	 * Get WebDriver object.
