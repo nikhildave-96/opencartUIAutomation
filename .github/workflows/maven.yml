@@ -33,6 +33,7 @@ jobs:
         install-chromedriver: true
     - name: Print some info
       run: |
+        echo "Nikhil Dave"
         echo $RunnerOS
         echo $ImageOS
         echo ${{ vars.browser }}
@@ -41,10 +42,10 @@ jobs:
       # run: mvn -B package --file pom.xml
       run: mvn test -Dtest=LoginTest#verifyLogin
       # run: mvn clean test
-    - name: Archive test report
-      uses: actions/upload-artifact@v4
-      with:
-        name: upload-extent-report
-        path: |
-          test-output/extent/extentReport.html
-          applogs/app.log
+    # - name: Archive test report
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: upload-extent-report
+    #     path: |
+    #       test-output/extent/extentReport.html
+    #       applogs/app.log
