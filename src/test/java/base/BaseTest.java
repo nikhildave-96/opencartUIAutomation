@@ -29,7 +29,6 @@ import utils.PropertiesReader;
 public class BaseTest {
 	static TakesScreenshot screenshot;
 	private static final Logger logger = LogManager.getLogger(BaseTest.class);
-//	static String url = PropertiesReader.readKey("oc_url");
 
 	/**
 	 * Captures screenshot of failed testcase.
@@ -76,7 +75,7 @@ public class BaseTest {
 	 * Navigates to the configured application url.
 	 */
 	public static void launchApplication() {
-		DriverManager.getDriver().get(PropertiesReader.url);
+		DriverManager.getDriver().get(PropertiesReader.readKey("oc_url"));
 		logger.info("navigated to the application url ...");
 	}
 

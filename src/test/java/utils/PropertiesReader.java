@@ -26,8 +26,6 @@ public class PropertiesReader {
 	static HashMap<String, String> locatorMap;
 	static HashMap<String, String> appElementMap;
 	private static final Logger logger = LogManager.getLogger(PropertiesReader.class);
-	public static String url;
-	public static String browser;
 
 	/**
 	 * Static block helping initialize the maps.
@@ -36,8 +34,6 @@ public class PropertiesReader {
 		initConfigMap();
 		initLocatorMap();
 		initElementMap();
-		url = readKey("oc_url");
-		browser = readKey("oc_browser").toLowerCase();
 	}
 
 	/**
