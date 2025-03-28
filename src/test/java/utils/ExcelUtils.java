@@ -29,20 +29,25 @@ public class ExcelUtils {
 		}
 	}
 
+	/**
+	 * Fetch row and column data as an 2D array object from the given worksheet
+	 * name.
+	 * 
+	 * @param sheetName Name of the worksheet from which data is to be fetched
+	 * @return 2D array containing worksheet data in form of rows and columns
+	 * @throws IOException
+	 */
 	public static Object[][] getData(String sheetName) throws IOException {
 		workbook = new XSSFWorkbook(excelFile);
 		worksheet = workbook.getSheet(sheetName);
 		if (worksheet != null) {
 			int rowsCount = worksheet.getLastRowNum() - worksheet.getFirstRowNum();
 			int colsCount = worksheet.getRow(1).getLastCellNum();
-//			System.out.println("rowsCount: " + rowsCount);
-//			System.out.println("colsCount: " + colsCount);
 			Object[][] data = new Object[rowsCount][colsCount];
 //			 skipping header row purposefully
-//			rows and cols if required to be removed from excel should also be deleted mandatorily
+//			rows, cols if required to be removed should also be deleted mandatorily from excel
 			for (int row = 1; row <= rowsCount; row++) {
 				for (int col = 0; col < colsCount; col++) {
-//					System.out.println("CellType is: " + worksheet.getRow(row).getCell(col).getCellType());
 					switch (worksheet.getRow(row).getCell(col).getCellType()) {
 					case STRING:
 //						 storing at zeroth row index of resultant array

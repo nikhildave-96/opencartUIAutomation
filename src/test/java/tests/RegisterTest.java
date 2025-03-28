@@ -21,7 +21,7 @@ public class RegisterTest extends BaseTest {
 		TestUtils.enterText(readElementPropertyKey("confirmPasswordInput"), pwdConfirm);
 		TestUtils.clickByVisibleText(newsSubscription);
 		TestUtils.clickCheckbox("agree");
-//		TestUtils.clickByValue(readElementPropertyKey("continueBtn"));
+		TestUtils.clickByValue(readElementPropertyKey("continueBtn"));
 		Assert.assertTrue(TestUtils.isTextVisible(readElementPropertyKey("accountCreatedTxt")));
 	}
 }

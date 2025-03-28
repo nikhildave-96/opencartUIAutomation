@@ -212,12 +212,24 @@ public class TestUtils {
 		return driver.getTitle();
 	}
 
+	/**
+	 * Get the Login worksheet data.
+	 * 
+	 * @return Array object containing data as rows and columns.
+	 * @throws IOException
+	 */
 	@DataProvider(name = "loginData")
 	public static Object[][] getLoginData() throws IOException {
 		logger.info("returning loginData object ...");
 		return ExcelUtils.getData("Login");
 	}
 
+	/**
+	 * Get the Register worksheet data.
+	 * 
+	 * @return Array object containing data as rows and columns.
+	 * @throws IOException
+	 */
 	@DataProvider(name = "registrationData")
 	public static Object[][] getRegistrationData() throws IOException {
 		logger.info("returning registrationData object ...");

@@ -21,18 +21,16 @@ public class LoginTest extends BaseTest {
 	public void verifyLoginPageNavigation() {
 		TestUtils.clickByTitle(readElementPropertyKey("myAccountTxt"));
 		TestUtils.clickByVisibleText(readElementPropertyKey("loginTxt"));
-//		TestUtils.verifyTextIsPresent(readElementPropertyKey("returningCustomerTxt"));
-//		Assert.assertEquals(TestUtils.getTitle(), readElementPropertyKey("accountLoginTxt"));
 		Assert.assertTrue(TestUtils.isTextVisible(readElementPropertyKey("returningCustomerTxt")));
 	}
 
-//	 lower the priority number, higher is the priority
+//	 lower the priority number, higher is the actual priority
 	@Test(priority = 9) // (dependsOnMethods = { "verifyloginPageNavigation" })
 	public static void verifyLogin() {
 		TestUtils.clickByTitle(readElementPropertyKey("myAccountTxt"));
 		TestUtils.clickByVisibleText(readElementPropertyKey("loginTxt"));
-//		 credentials for sensitive/production app should come from env variables
-//		 login to be kept inside base test or not depends upon application requirement
+//		credentials for sensitive/production app should come from environment variables
+//		login to be kept inside base test or not depends upon application requirement
 		TestUtils.enterText(readElementPropertyKey("userNameInput"), readDataPropertyKey("oc_username"));
 		TestUtils.enterText(readElementPropertyKey("passwordInput"), readDataPropertyKey("oc_password"));
 		TestUtils.clickByValue(readElementPropertyKey("loginTxt"));
@@ -47,10 +45,8 @@ public class LoginTest extends BaseTest {
 		TestUtils.enterText(readElementPropertyKey("passwordInput"), password);
 		TestUtils.clickByValue(readElementPropertyKey("loginTxt"));
 		if (loginStatus) {
-//			 successful login
 			Assert.assertTrue(TestUtils.isTextVisible(readElementPropertyKey("affiliateAccountLink")));
 		} else {
-//			 failed login
 			Assert.assertEquals(TestUtils.isTextVisible(readElementPropertyKey("loginError")), !loginStatus);
 		}
 	}

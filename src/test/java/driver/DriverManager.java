@@ -2,6 +2,7 @@ package driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -24,6 +25,7 @@ public class DriverManager {
 //	 log4j related configuration file (.xml/.yaml) should be present under
 //	 'src/main/resources' or 'src/test/resources' directory/folder
 	private static final Logger logger = LogManager.getLogger(DriverManager.class);
+	static String browserName = PropertiesReader.readKey("oc_browser").toLowerCase();
 
 	/**
 	 * Get WebDriver object.
@@ -41,8 +43,6 @@ public class DriverManager {
 	 * @author nikdav
 	 */
 	public static void initBrowser() {
-		logger.info("running on system '" + System.getenv("OS") + "' ...");
-		String browserName = PropertiesReader.readKey("browser").toLowerCase();
 		logger.info("launching '" + browserName + "' browser ...");
 		if (driver == null) {
 			switch (browserName) {
@@ -51,8 +51,8 @@ public class DriverManager {
 //				 DesiredCapabilities's object can be passed as an argument while creating
 //				 driver's object
 				ChromeOptions chOptions = new ChromeOptions();
-// 				only headless works for GitHub Actions, else 'org.openqa.selenium.SessionNotCreatedException' is thrown
-				chOptions.addArguments("headless"); 
+// 				only headless works for GitHub Actions, else 'org.openqa.selenium.SessionNotCreatedException' is thrown, remove headless when running test locally if required
+				chOptions.addArguments("headless");
 				driver = new ChromeDriver(chOptions);
 //				 selenium 4 onwards doesn't require configuring system property like below
 //				 System.setProperty("webdriver.chrome.driver", "<pathToDriverExefile>");
@@ -60,13 +60,13 @@ public class DriverManager {
 				break;
 			case "firefox":
 				FirefoxOptions ffOptions = new FirefoxOptions();
-				ffOptions.addArguments("incognito", "start-maximized");
+				ffOptions.addArguments("headless"); // "incognito", "start-maximized"
 				driver = new FirefoxDriver(ffOptions);
 				logger.info("launched firefox browser ...");
 				break;
 			case "edge":
 				EdgeOptions edOptions = new EdgeOptions();
-				edOptions.addArguments("incognito", "headless");
+				edOptions.addArguments("headless");
 				driver = new EdgeDriver(edOptions);
 				logger.info("launched edge browser ...");
 				break;
@@ -74,7 +74,7 @@ public class DriverManager {
 				logger.error("incorrect browser value provided ...");
 			}
 		}
-//		driver.manage().window().setSize(new Dimension(1920, 1080));
+		driver.manage().window().setSize(new Dimension(1920, 1080));
 	}
 
 	/**

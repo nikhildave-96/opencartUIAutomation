@@ -178,8 +178,8 @@ public class PropertiesReader {
 		}
 	}
 
-	public static void main(String[] args) {
-		System.out.println(readKey("url"));
-		System.out.println(System.getProperty("os.name"));
-	}
+//	public static void main(String[] args) {
+//		System.out.println(readKey("url"));
+//		System.out.println(System.getProperty("os.name"));
+//	}
 }

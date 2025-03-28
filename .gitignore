@@ -2,7 +2,7 @@
 /test-output/*
 
 # do not ignore extent under test-output
-!/test-output/extent/
+#!/test-output/extent/
 
 /target/
 /screenshots/
