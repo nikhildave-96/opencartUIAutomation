@@ -29,12 +29,19 @@ jobs:
       with:
         chrome-version: 134
         install-chromedriver: true
+    - name: Print some info
+      run: |
+        echo runner.os
+        echo ${{ vars.browser }}
+        echo ${{ vars.url }}
     - name: Build with Maven
       # run: mvn -B package --file pom.xml
       run: mvn test -Dtest=LoginTest#verifyLogin
-      # run: mvn test
+      # run: mvn clean test
     - name: Archive test report
       uses: actions/upload-artifact@v4
       with:
         name: upload-extent-report
-        path: test-output/extent/extentReport.html
+        path: |
+          test-output/extent/extentReport.html
+          applogs/app.log
