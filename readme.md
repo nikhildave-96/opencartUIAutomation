@@ -45,16 +45,17 @@ Ensure build success to be displayed in the console/logs upon running any of the
 ## Git
 Below commonly used git commands are helpful while contributing towards the project:
 
- - git status --> 
+ - git status --> shows untracked changes.
  - git add . --> adds untracked changes to the staged state in order to track them.
- - git commit -m "commitMsg" -->
- - git pull origin "branchName" -->
- - git push origin "branchName" -->
+ - git commit -m "commitMsg" --> commit staged/tracked changes to the local git repository.
+ - git log --> shows local commit history.
+ - git pull origin "branchName" --> pulls the content from remote git repository to local git repository.
+ - git push origin "branchName" --> pushes the content from local git repository to remote git repository.
  - git stash list --> 
  - git stash -m "stashMsg" -->
  - git stash apply "stash@{stashNumber}" --> 
- - git checkout "branchName" -->
- - git checkout -b "newBranchName" -->
+ - git checkout "branchName" --> checkout to an existing branch.
+ - git checkout -b "newBranchName" --> create a new branch and check it out.
 
 ## Running tests locally
 
