@@ -14,9 +14,9 @@ env:
   oc_url: ${{ vars.OC_URL }}
 
 jobs:
+# Job 1 - Maven build and run testcases
   build:
     runs-on: macos-latest
-    
     steps:
     - name: Step 1 - Checkout the project
       uses: actions/checkout@v4
@@ -31,9 +31,9 @@ jobs:
     - name: Print some info
       run: |
         echo "printing ..."
-        echo $ImageOS
-        echo ${{ vars.OC_BROWSER }}
-        echo ${{ vars.OC_URL }}
+        echo "Runner OS: " $ImageOS
+        echo "Browser: " ${{ vars.OC_BROWSER }}
+        echo "Url: " ${{ vars.OC_URL }}
         
     - name: Step 3 - Install Chrome browser
       if: ${{env.oc_browser == 'chrome'}}
@@ -51,10 +51,42 @@ jobs:
       run: mvn test -Dtest=LoginTest#verifyLogin
       # run: mvn clean test
       
-    # - name: Step 5 - Archive report and log files
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: upload-extent-report
-    #     path: |
-    #       test-output/extent/extentReport.html
-    #       applogs/app.log
+    - name: Step 5 - Archive report and log files
+      uses: actions/upload-artifact@v4
+      with:
+        name: upload-extentReport-log
+        path: |
+          test-output/extent/extentReport.html
+          applogs/app.log
+
+# Job 2 - sending test artifacts over email
+  Send-Email:
+    runs-on: ubuntu-latest
+    needs: build
+    if: always()
+    steps:
+      - name: Download Test artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: upload-extentReport-log
+          path: test-artifacts
+
+      - name: Send email with Test artifacts
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Selenium test results for ${{ github.repository }} ${{ github.sha }}"
+          from: Test Suite
+          body: |
+            Hi,
+            The maven build workflow for ${{ github.repository }} ${{ github.sha }} has completed.
+            Please find the test artifacts attached to this email.
+            
+            Regards!!
+          to: nikhildave75@gmail.com
+          attachments: |
+            ./test-artifacts/*.html
+            ./test-artifacts/*.log
