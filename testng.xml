@@ -1,8 +1,14 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 
-<!-- a suite tag can contain multiple test tags if required but testng.xml 
-	file can contain only one suite/suite tag -->
+<!-- a suite tag can contain multiple test tags if required but a testng.xml 
+	file can contain only a single suite/suite tag -->
+
+<!-- NORMAL EXECUTION -->
 <suite name="opencartUIAutomatedTests">
+
+	<!-- THREAD-SAFE PARALLEL EXECUTION -->
+	<!-- <suite name="opencartUIAutomatedTests" parallel="methods" thread-count="3"> -->
+
 	<listeners>
 		<!-- test cases falling under below test tag (limited to suite tag) are 
 			in scope of this listener, applicable only upon executing testng.xml file 
