@@ -105,5 +105,5 @@ jobs:
             Regards!
           to: nikhildave75@gmail.com, nikhildave45.nd@gmail.com
           cc: nikhildave45.nd@gmail.com
-          attachments: ./test-artifacts/*/*.html, ./test-artifacts/*/*.log
-          # attachments: ./test-artifacts/test-output/extent/*.html, ./test-artifacts/applogs/*.log
+          # attachments: ./test-artifacts/*/*.html, ./test-artifacts/*/*.log
+          attachments: ./test-artifacts/test-output/extent/*.html, ./test-artifacts/applogs/*.log
