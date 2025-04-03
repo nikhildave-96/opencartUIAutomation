@@ -14,9 +14,9 @@ env:
   oc_url: ${{ vars.OC_URL }}
 
 jobs:
-# Job 1 - Maven build and run testcases
+  # Job 1 - Maven build and run testcases
   Maven-build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: Step 1 - Checkout the project
       uses: actions/checkout@v4
@@ -59,51 +59,39 @@ jobs:
           test-output/extent/extentReport.html
           applogs/app.log
 
-# Job 2 - sending test artifacts over email
-  Send-Email:
+  # Job 2 - sending test artifacts over email
+  Send-email:
     runs-on: ubuntu-latest
     needs: Maven-build
     # success() || failure() can be used instead of always() as per the requirement
     if: always()
     steps:
-      - name: Download Test artifacts
+      - name: Download test artifacts
         uses: actions/download-artifact@v4
         with:
+          # name here should match the name provided in actions/upload-artifact
           name: upload-extentReport-log
+          # path specified below gets created under the project's root folder
           path: test-artifacts
-          
-      - name: Do a pwd after
-        run: |
-          pwd
-          cd test-artifacts
-          pwd
-          ls
-          cd applogs
-          pwd
-          ls
-          cd ../test-output/extent
-          pwd
-          ls
-        
-      - name: Send email with Test artifacts
+      - name: Send email with attached test artifacts
         uses: dawidd6/action-send-mail@v4
         with:
           server_address: smtp.gmail.com
           server_port: 465
-          username: ${{ secrets.EMAIL_USERNAME }}
-          # password here is an app password that allows less secure apps to access the google account.
+          # password here is the app password that allows less secure apps to access the google account.
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "Selenium test results for ${{ github.repository }} ${{ github.sha }}"
+          username: ${{ secrets.EMAIL_USERNAME }}
+          subject: "Selenium test results for -> ${{ github.repository }}"
           from: Automated Test Results Email
+          # use comma separation to add multiple recipients 
+          to: nikhildave75@gmail.com
           body: |
             Hi,
             
-            The maven build workflow for GitHub Repo: '${{ github.repository }}' with commit sha:' ${{ github.sha }}' has completed.
+            The maven build workflow for GitHub Repo: '${{ github.repository }}' with commit sha: '${{ github.sha }}' has completed.
             
             Please find the test artifacts attached to this email.
             
             Regards!
-          to: nikhildave75@gmail.com, nikhildave45.nd@gmail.com
-          cc: nikhildave45.nd@gmail.com
-          # attachments: ./test-artifacts/*/*.html, ./test-artifacts/*/*.log
+          # complete path of the artifact should be specified, use comma separator in case of multiple artifacts
           attachments: ./test-artifacts/test-output/extent/*.html, ./test-artifacts/applogs/*.log
