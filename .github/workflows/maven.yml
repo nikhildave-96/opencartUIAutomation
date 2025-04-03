@@ -78,6 +78,12 @@ jobs:
           cd test-artifacts
           pwd
           ls
+          cd applogs
+          pwd
+          ls
+          cd ../test-output/extent
+          pwd
+          ls
         
       # - name: Send email with Test artifacts
       #   uses: dawidd6/action-send-mail@v4
