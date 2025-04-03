@@ -65,14 +65,17 @@ jobs:
     needs: build
     if: always()
     steps:
+      - name: do a pwd before
+        run: pwd
       - name: Download Test artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: upload-extentReport-log
-          path: test-artifacts
-
+          # path: test-artifacts
+      - name: do a pwd after
+        run: pwd
       - name: Send email with Test artifacts
-        uses: dawidd6/action-send-mail@v3
+        uses: dawidd6/action-send-mail@v4
         with:
           server_address: smtp.gmail.com
           server_port: 465
@@ -87,6 +90,6 @@ jobs:
             
             Regards!!
           to: nikhildave75@gmail.com
-          attachments: |
-            ./test-artifacts/*.html
-            ./test-artifacts/*.log
+          # attachments: |
+          #   ./test-artifacts/*.html
+          #   ./test-artifacts/*.log
