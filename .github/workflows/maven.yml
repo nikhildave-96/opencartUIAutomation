@@ -15,7 +15,7 @@ env:
 
 jobs:
 # Job 1 - Maven build and run testcases
-  build:
+  Maven-build:
     runs-on: ubuntu-latest
     steps:
     - name: Step 1 - Checkout the project
@@ -62,17 +62,18 @@ jobs:
 # Job 2 - sending test artifacts over email
   Send-Email:
     runs-on: ubuntu-latest
-    needs: build
+    needs: Maven-build
+    # success() || failure() can be used instead of always() as per the requirement
     if: always()
     steps:
-      - name: do a pwd before
-        run: |
-          pwd
-          cd ../..
-          mkdir test-artifacts
-          pwd
-          cd test-artifacts
-          pwd
+      # - name: do a pwd before
+      #   run: |
+      #     pwd
+      #     cd ../..
+      #     mkdir test-artifacts
+      #     pwd
+      #     cd test-artifacts
+      #     pwd
           
       - name: Download Test artifacts
         uses: actions/download-artifact@v4
@@ -80,8 +81,8 @@ jobs:
           name: upload-extentReport-log
           path: test-artifacts
           
-      - name: do a pwd after
-        run: pwd
+      # - name: do a pwd after
+      #   run: pwd
         
       - name: Send email with Test artifacts
         uses: dawidd6/action-send-mail@v4
@@ -101,8 +102,6 @@ jobs:
             Please find the test artifacts attached to this email.
             
             Regards!!
-          to: nikhildave75@gmail.com
+          to: nikhildave75@gmail.com, nikhildave45.nd@gmail.com
           cc: nikhildave45.nd@gmail.com
-          attachments: |
-            ./test-artifacts/*.html
-            ./test-artifacts/*.log
+          attachments: ./test-artifacts/*.html, ./test-artifacts/*.log
