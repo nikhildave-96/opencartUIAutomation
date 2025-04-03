@@ -28,13 +28,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
         
-    - name: Print some info
-      run: |
-        echo "printing ..."
-        echo "Runner OS: " $ImageOS
-        echo "Browser: " ${{ vars.OC_BROWSER }}
-        echo "Url: " ${{ vars.OC_URL }}
-        
     - name: Step 3 - Install Chrome browser
       if: ${{env.oc_browser == 'chrome'}}
       uses: browser-actions/setup-chrome@v1
@@ -46,12 +39,12 @@ jobs:
       uses: browser-actions/setup-edge@v1
        # firefox browser throwing org.openqa.selenium.SessionNotCreatedException even in headless mode
        
-    - name: Step 4 - Build with Maven
+    - name: Step 4 - Build and test with Maven
       # run: mvn -B package --file pom.xml
       run: mvn test -Dtest=LoginTest#verifyLogin
       # run: mvn clean test
       
-    - name: Step 5 - Archive report and log files
+    - name: Step 5 - Upload test report and log files
       uses: actions/upload-artifact@v4
       with:
         name: upload-extentReport-log
@@ -59,21 +52,22 @@ jobs:
           test-output/extent/extentReport.html
           applogs/app.log
 
-  # Job 2 - sending test artifacts over email
+  # Job 2 - sending artifacts over email
   Send-email:
-    runs-on: ubuntu-latest
+    # runner type can vary for different jobs
+    runs-on: macos-latest
     needs: Maven-build
     # success() || failure() can be used instead of always() as per the requirement
     if: always()
     steps:
-      - name: Download test artifacts
+      - name: Step 1 - Download the artifacts
         uses: actions/download-artifact@v4
         with:
           # name here should match the name provided in actions/upload-artifact
           name: upload-extentReport-log
           # path specified below gets created under the project's root folder
           path: test-artifacts
-      - name: Send email with attached test artifacts
+      - name: Step 2 - Send mail with attached artifacts
         uses: dawidd6/action-send-mail@v4
         with:
           server_address: smtp.gmail.com
@@ -81,16 +75,16 @@ jobs:
           # password here is the app password that allows less secure apps to access the google account.
           password: ${{ secrets.EMAIL_PASSWORD }}
           username: ${{ secrets.EMAIL_USERNAME }}
-          subject: "Selenium test results for -> ${{ github.repository }}"
+          subject: "Selenium test results: ${{ github.repository }}"
           from: Automated Test Results Email
           # use comma separation to add multiple recipients 
           to: nikhildave75@gmail.com
           body: |
             Hi,
             
-            The maven build workflow for GitHub Repo: '${{ github.repository }}' with commit sha: '${{ github.sha }}' has completed.
+            Maven build workflow for GitHub Repository: '${{ github.repository }}' with commit sha: '${{ github.sha }}' has completed.
             
-            Please find the test artifacts attached to this email.
+            Kindly find the test artifacts attached to this email.
             
             Regards!
           # complete path of the artifact should be specified, use comma separator in case of multiple artifacts
