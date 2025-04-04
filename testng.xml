@@ -18,8 +18,10 @@
 	<test name="opencartTests">
 		<classes>
 			<class name="tests.LoginTest">
-				<methods> <include name="verifyLogin" /> </methods> 
-				<methods> <include name="verifyLoginPageNavigation" /> </methods> 
+				<methods>
+					<include name="verifyLogin" />
+					<include name="verifyLoginPageNavigation" />
+				</methods>
 			</class>
 			<!-- <class name="tests.MyAccountTest" /> -->
 		</classes>
